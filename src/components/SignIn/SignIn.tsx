@@ -132,7 +132,7 @@ const SignIn: React.FC<SignInProps> = ({ onLoginSuccess, verificationStatus, cle
           navigate('/');
         }, 2000);
       })
-      .catch((err: any) => {
+      .catch(() => {
         setIsLoading(false);
         setErrorMessage('Authentication failed. Please check your credentials and try again.');
         setShowError(true);

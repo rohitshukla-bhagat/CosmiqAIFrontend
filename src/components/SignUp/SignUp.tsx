@@ -147,7 +147,7 @@ const SignUp: React.FC = () => {
           navigate('/signin');
         }, 6000);
       })
-      .catch((err: any) => {
+      .catch(() => {
         setIsLoading(false);
         setErrorMessage('Registration failed. Please ensure your details are correct and try again.');
         setShowError(true);
