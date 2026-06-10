@@ -1,0 +1,101 @@
+/* Features Grid */
+.features-section {
+  padding: 4rem 0;
+}
+@media (min-width: 768px) {
+  .features-section { padding: var(--spacing-stack-xl) 0; }
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+@media (min-width: 768px) {
+  .section-header { margin-bottom: var(--spacing-stack-xl); }
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.section-desc {
+  max-width: 42rem;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--color-on-surface-variant);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-gutter);
+}
+@media (min-width: 640px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.feature-icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.feature-icon.primary {
+  color: var(--color-primary);
+}
+
+.feature-icon.secondary {
+  color: var(--color-secondary);
+}
+
+.feature-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.feature-card-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--color-on-surface-variant);
+  margin: 10px 0;
+}
+.icon-primary { background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); }
+.icon-secondary { background: rgba(106, 23, 173, 0.2); border: 1px solid rgba(222, 183, 255, 0.3); }
+
+.feature-bg-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+  font-size: 6rem;
+}
+.glass-card:hover .feature-bg-icon {
+  opacity: 0.2;
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: var(--color-surface-variant);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+}
+.fill-primary { background-color: var(--color-primary); box-shadow: 0 0 10px #00E5FF; }
+.fill-secondary { background-color: var(--color-secondary); box-shadow: 0 0 10px #7B2FBE; }

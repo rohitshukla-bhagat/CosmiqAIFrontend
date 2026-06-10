@@ -1,0 +1,121 @@
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background: rgba(14, 19, 30, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 218, 243, 0.1);
+  transition: all 0.3s ease;
+}
+header.scrolled {
+  background: rgba(14, 19, 30, 0.95);
+}
+header.scrolled .header-inner {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+@media (min-width: 768px) {
+  .header-inner {
+    padding-left: var(--spacing-margin-desktop);
+    padding-right: var(--spacing-margin-desktop);
+  }
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-stack-md);
+}
+@media (min-width: 1024px) {
+  .nav-desktop { display: flex; gap: var(--spacing-stack-lg); }
+}
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-on-surface-variant);
+  transition: color 0.3s ease;
+}
+@media (max-width: 1023px) {
+  .nav-link { font-size: 12px; }
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+}
+.nav-link.active {
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 4px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.menu-btn {
+  display: block;
+  color: var(--color-primary);
+  padding: 0.5rem;
+}
+@media (min-width: 1024px) {
+  .menu-btn { display: none; }
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 19, 30, 0.95);
+  backdrop-filter: blur(24px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+.mobile-menu.active {
+  transform: translateX(0);
+}
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: var(--color-primary);
+}
+.mobile-nav-link {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  transition: color 0.3s ease;
+}
+.mobile-nav-link:hover, .mobile-nav-link.active {
+  color: var(--color-primary);
+}
+.mobile-menu .btn-primary {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem;
+}

@@ -1,0 +1,99 @@
+/* Stars */
+#star-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(ellipse at bottom, #0D1B3E 0%, #050A14 100%);
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(-45deg, #00E5FF, rgba(0, 0, 0, 0));
+  filter: drop-shadow(0 0 6px #00E5FF);
+  animation: tail 3s ease-in-out infinite, shooting 3s ease-in-out infinite;
+}
+
+@keyframes tail {
+  0% { width: 0; }
+  30% { width: 100px; }
+  100% { width: 0; }
+}
+
+@keyframes shooting {
+  0% { transform: translateX(0) translateY(0) rotate(-45deg); }
+  100% { transform: translateX(-1000px) translateY(1000px) rotate(-45deg); }
+}
+
+/* Earth Rotation */
+.earth-container {
+  position: relative;
+  width: clamp(280px, 80vw, 400px);
+  height: clamp(280px, 80vw, 400px);
+  perspective: 1000px;
+}
+
+.earth-globe {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
+}
+
+.earth-globe::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset -20px -20px 50px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.earth-globe video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.earth-atmosphere {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  box-shadow:
+      inset 0 0 40px rgba(0, 229, 255, 0.5),
+      0 0 60px 10px rgba(0, 229, 255, 0.25),
+      0 0 100px 30px rgba(123, 47, 190, 0.1);
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+}
+
+@keyframes rotateEarth {
+  from { background-position: 0 0; }
+  to { background-position: 2400px 0; }
+}

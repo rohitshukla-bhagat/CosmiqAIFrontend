@@ -1,0 +1,846 @@
+/* NightSky.css */
+
+.night-sky-container {
+  margin-top: 80px; /* Offset for fixed header */
+  min-height: calc(100vh - 80px);
+  background: transparent;
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section - component-specific overrides */
+.ns-hero {
+  /* decorative layers are absolute, title/subtitle inside .page-hero-content */
+}
+
+.ns-hero-starfield {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.3;
+}
+
+.ns-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
+}
+
+.ns-hero-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 229, 255, 0.1);
+  filter: blur(100px);
+  border-radius: 50%;
+  top: -200px;
+}
+
+/* Page Layout & Container */
+.ns-content-wrapper {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* Glass Panel Style */
+.glass-panel {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(13, 27, 62, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 0.75rem;
+}
+
+/* State 1: Location Access Request */
+.location-request-section {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.location-card {
+  width: 100%;
+  max-width: 32rem;
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+}
+
+.location-icon-wrapper {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(106, 23, 173, 0.2);
+  transition: all 0.3s ease;
+}
+
+.location-icon-wrapper.glow {
+  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4);
+  animation: pulse-cyan 2s infinite;
+}
+
+.location-icon-wrapper.calibrating-pulse {
+  animation: calibrating-pulse-anim 1.2s ease-in-out infinite;
+}
+
+.location-icon-wrapper.calibrating-pulse .location-icon {
+  animation: spin-loader 2s linear infinite;
+}
+
+.location-icon {
+  font-size: 2.5rem !important;
+  color: var(--color-primary);
+}
+
+.location-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.location-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-on-background);
+}
+
+.location-description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-on-surface-variant);
+  line-height: 1.5;
+}
+
+.location-btn {
+  width: 100%;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary-container);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.location-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.location-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.location-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* State 2: Dashboard Container & Grid */
+.ns-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Location Status Bar */
+.location-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.status-location-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-location-name {
+  color: var(--color-on-surface);
+  font-weight: 500;
+}
+
+.status-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pulse-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #4ade80;
+  border-radius: 50%;
+  animation: pulse-live 1.5s infinite;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.live-badge-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #4ade80;
+}
+
+/* Dashboard Grid Layout */
+.ns-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-gutter);
+}
+
+/* Grid Card General Settings */
+.grid-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+}
+
+.grid-card:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+.col-span-8 {
+  grid-column: span 12;
+}
+
+.col-span-4 {
+  grid-column: span 12;
+}
+
+.col-span-12 {
+  grid-column: span 12;
+}
+
+/* Card Header Settings */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+}
+
+.card-title {
+  color: #ffffff;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+/* Moon Phase Card Styles */
+.moon-card {
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card-content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.moon-illumination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.illumination-percent {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.illumination-text {
+  color: var(--color-on-surface-variant);
+  font-size: 0.95rem;
+}
+
+.moon-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.metric-box {
+  background-color: var(--color-surface-container-low);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-on-surface-variant);
+}
+
+.metric-value {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.moon-graphic-wrapper {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.moon-graphic-glow {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  filter: blur(24px);
+  transition: background-color 0.3s ease;
+}
+
+.moon-card:hover .moon-graphic-glow {
+  background-color: rgba(0, 229, 255, 0.08);
+}
+
+.moon-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25));
+  animation: moon-breathe 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Sun & Daylight Card Styles */
+.sun-card {
+  gap: 2rem;
+}
+
+.sun-card:hover {
+  border-color: rgba(254, 201, 49, 0.4);
+}
+
+.sun-arc-wrapper {
+  position: relative;
+  height: 8rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.sun-arc-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sun-marker-glow {
+  filter: drop-shadow(0 0 8px #fec931);
+}
+
+.sun-arc-labels {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-on-surface-variant);
+}
+
+.sun-details-row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-on-surface-variant);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Planet list grid section */
+.planet-list-container {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.planet-list-container:hover {
+  box-shadow: none;
+  border: none;
+}
+
+.planets-wrapper-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-gutter);
+  width: 100%;
+}
+
+/* Individual Planet Card Styles */
+.planet-card {
+  background: rgba(13, 27, 62, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.planet-card:hover {
+  transform: translateY(-5px);
+}
+
+.planet-circle-wrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.planet-card:hover .planet-circle-wrapper {
+  transform: scale(1.1);
+}
+
+.planet-circle {
+  border-radius: 50%;
+}
+
+.planet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.planet-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.planet-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+}
+
+/* Planet Custom Visuals */
+.mars-color {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #FF6B35;
+  box-shadow: 0 0 15px #FF6B35;
+}
+.planet-card:hover:has(.mars-color) {
+  box-shadow: 0 0 25px rgba(255, 107, 53, 0.4);
+  border-color: rgba(255, 107, 53, 0.5);
+}
+
+.jupiter-color {
+  width: 2rem;
+  height: 2rem;
+  background-color: #C9A96E;
+  box-shadow: 0 0 15px #C9A96E;
+}
+.planet-card:hover:has(.jupiter-color) {
+  box-shadow: 0 0 25px rgba(201, 169, 110, 0.4);
+  border-color: rgba(201, 169, 110, 0.5);
+}
+
+.venus-color {
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: #FFF9D7;
+  box-shadow: 0 0 20px #FFF9D7;
+}
+.planet-card:hover:has(.venus-color) {
+  box-shadow: 0 0 25px rgba(255, 249, 215, 0.4);
+  border-color: rgba(255, 249, 215, 0.5);
+}
+
+.mercury-color {
+  width: 1rem;
+  height: 1rem;
+  background-color: #9B9B9B;
+  box-shadow: 0 0 10px #9B9B9B;
+}
+.planet-card:hover:has(.mercury-color) {
+  box-shadow: 0 0 25px rgba(155, 155, 155, 0.4);
+  border-color: rgba(155, 155, 155, 0.5);
+}
+
+/* Saturn Specific Ring Styles */
+.saturn-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.saturn-color {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #EAD6B0;
+  box-shadow: 0 0 15px #EAD6B0;
+  z-index: 2;
+}
+
+.saturn-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(20deg);
+  width: 2.5rem;
+  height: 0.5rem;
+  border: 1.5px solid rgba(234, 214, 176, 0.7);
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.planet-card:hover:has(.saturn-color) {
+  box-shadow: 0 0 25px rgba(234, 214, 176, 0.4);
+  border-color: rgba(234, 214, 176, 0.5);
+}
+
+/* Constellation Sky Chart Card */
+.sky-chart-card {
+  position: relative;
+  background-color: #050A14;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.sky-chart-card:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.sky-chart-header {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sky-compass {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compass-direction {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+  z-index: 2;
+}
+
+.compass-axis-x {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 229, 255, 0.15);
+}
+
+.compass-axis-y {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background: rgba(0, 229, 255, 0.15);
+}
+
+.sky-chart-container {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  background: radial-gradient(circle at center, rgba(13, 27, 62, 0.4) 0%, transparent 80%);
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sky-chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Star Twinkle Particle animation */
+.star-twinkle-particle {
+  animation: twinkle var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+/* Interactive Constellation outlines */
+.constellation-group {
+  cursor: pointer;
+  stroke: rgba(0, 229, 255, 0.15);
+  fill: none;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.constellation-stars circle {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 4px #ffffff);
+  transition: r 0.3s ease, fill 0.3s ease;
+}
+
+/* Orion styling on hover */
+.orion-group.active {
+  stroke: var(--color-primary);
+  stroke-width: 1.5;
+}
+
+.orion-group.active .constellation-stars circle {
+  fill: var(--color-primary);
+  r: 4px;
+}
+
+/* Ursa Major styling on hover */
+.ursa-group.active {
+  stroke: var(--color-secondary);
+  stroke-width: 1.5;
+}
+
+.ursa-group.active .constellation-stars circle {
+  fill: var(--color-secondary);
+  r: 4px;
+}
+
+/* ISS Pass Times Card Styles */
+.iss-tracking-card {
+  gap: 1.5rem;
+}
+
+.iss-tracking-card:hover {
+  border-color: rgba(222, 183, 255, 0.4);
+}
+
+.iss-passes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.iss-pass-item {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.iss-pass-item:hover {
+  background-color: rgba(222, 183, 255, 0.08);
+  border-color: rgba(222, 183, 255, 0.2);
+}
+
+.pass-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pass-time {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.pass-coords {
+  color: var(--color-on-surface-variant);
+}
+
+.pass-duration {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+}
+
+.iss-notify-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(222, 183, 255, 0.3);
+  background-color: rgba(222, 183, 255, 0.15);
+  color: var(--color-secondary);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.iss-notify-btn:hover {
+  background-color: rgba(222, 183, 255, 0.25);
+  box-shadow: 0 0 15px rgba(222, 183, 255, 0.2);
+}
+
+.iss-notify-btn.notified {
+  background-color: #6a17ad;
+  border-color: #d4a5ff;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(106, 23, 173, 0.4);
+}
+
+/* Animations Definitions */
+@keyframes pulse-cyan {
+  0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(0, 229, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+}
+
+@keyframes calibrating-pulse-anim {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+  }
+}
+
+@keyframes spin-loader {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes moon-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-live {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px rgba(74, 222, 128, 0.8); }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small Devices (Landscape Phones / Tablets) */
+@media (min-width: 640px) {
+  .planets-wrapper-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium Devices (Tablets, 768px and up) */
+@media (min-width: 768px) {
+  .ns-hero {
+    height: 250px;
+    padding: 0 var(--spacing-margin-desktop);
+  }
+
+  .ns-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .moon-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .sky-chart-container {
+    height: 450px;
+  }
+}
+
+/* Large Devices (Desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .col-span-8 {
+    grid-column: span 8;
+  }
+
+  .col-span-4 {
+    grid-column: span 4;
+  }
+
+  .planets-wrapper-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

@@ -1,0 +1,286 @@
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+  margin-top: 3em;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: 5rem;
+    margin-top: none;
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-stack-md);
+  text-align: center;
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    text-align: left;
+    order: 1;
+  }
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-badges {
+    justify-content: flex-start;
+  }
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.badge-primary {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.2);
+  color: var(--color-primary);
+}
+
+.badge-secondary {
+  background: rgba(106, 23, 173, 0.2);
+  border-color: rgba(222, 183, 255, 0.2);
+  color: var(--color-secondary);
+}
+
+.hero-desc {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .hero-desc {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-outline {
+    width: auto;
+  }
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .hero-stats {
+    gap: 2rem;
+    text-align: left;
+  }
+}
+
+.hero-stat-block {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-stat-block {
+    text-align: left;
+  }
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .hero-visual {
+    order: 2;
+  }
+}
+
+.live-tracking-badge {
+  position: absolute;
+  top: -3rem;
+  left: 10%;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  animation: bounce 1.5s infinite alternate;
+  z-index: 20;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .live-tracking-badge {
+    top: -3rem;
+    padding: 0.5rem 1.25rem;
+    left: 20%;
+  }
+}
+
+.live-tracking-badge-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .live-tracking-badge-inner {
+    gap: 0.5rem;
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* Music Toggle Button Styling */
+.music-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: rgba(10, 15, 30, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  color: var(--color-on-surface);
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .music-toggle-btn {
+    width: auto;
+  }
+}
+
+.music-toggle-btn:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.music-toggle-btn.playing {
+  border-color: rgba(106, 23, 173, 0.5);
+  box-shadow: 0 0 15px rgba(106, 23, 173, 0.3);
+}
+
+.music-toggle-btn.playing:hover {
+  background: rgba(106, 23, 173, 0.15);
+  border-color: rgba(106, 23, 173, 0.8);
+  box-shadow: 0 0 25px rgba(106, 23, 173, 0.5);
+}
+
+.music-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* Audio Wave Animation */
+.audio-wave {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 18px;
+  height: 16px;
+}
+
+.audio-wave span {
+  display: block;
+  width: 3px;
+  background-color: var(--color-secondary);
+  border-radius: 2px;
+  animation: audio-wave-anim 1.2s ease-in-out infinite;
+}
+
+.audio-wave span:nth-child(1) { height: 60%; animation-delay: 0s; }
+.audio-wave span:nth-child(2) { height: 100%; animation-delay: 0.15s; }
+.audio-wave span:nth-child(3) { height: 75%; animation-delay: 0.3s; }
+.audio-wave span:nth-child(4) { height: 40%; animation-delay: 0.45s; }
+
+@keyframes audio-wave-anim {
+  0%, 100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+}

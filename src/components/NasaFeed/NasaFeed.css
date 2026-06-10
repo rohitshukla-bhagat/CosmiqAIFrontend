@@ -1,0 +1,994 @@
+/* NasaFeed.css */
+
+.nasa-feed-container {
+  margin-top: 80px; /* Offset for fixed header */
+  min-height: calc(100vh - 80px);
+  background: transparent;
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Hero Section */
+/* Hero Section - component-specific overrides */
+.feed-hero {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.feed-stars-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1px 1px at 25% 25%, #fff, transparent),
+              radial-gradient(1px 1px at 50% 50%, #fff, transparent),
+              radial-gradient(1px 1px at 75% 75%, #fff, transparent),
+              radial-gradient(2px 2px at 15% 85%, #fff, transparent);
+  background-size: 550px 550px;
+  animation: stars-bg-move 100s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes stars-bg-move {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-550px); }
+}
+
+.feed-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(150, 62, 0, 0.1) 0%, transparent 50%, rgba(106, 17, 173, 0.1) 100%);
+}
+
+.feed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background-color: rgba(255, 102, 0, 0.1);
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  border-radius: 9999px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
+}
+
+.rocket-icon {
+  color: #FF6600;
+  font-size: 14px !important;
+}
+
+.feed-badge-text {
+  color: #FF6600;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* 2. Today's Featured APOD (Hero Card) */
+.featured-section {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+@media (min-width: 768px) {
+  .featured-section {
+    height: 600px;
+  }
+}
+
+.featured-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 2s ease;
+}
+
+.featured-section:hover .featured-image {
+  transform: scale(1.05);
+}
+
+.featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-background) 0%, rgba(14, 19, 30, 0.4) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+.featured-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem var(--spacing-margin-mobile);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .featured-content {
+    padding: 3rem var(--spacing-margin-desktop);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 3rem;
+  }
+}
+
+.featured-details {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.featured-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+}
+
+.separator-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(0, 229, 255, 0.4);
+}
+
+.featured-date {
+  color: var(--color-on-surface-variant);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.featured-title {
+  color: #ffffff;
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .featured-title {
+    font-size: 2.25rem;
+  }
+}
+
+.featured-credit {
+  color: rgba(220, 228, 229, 0.7);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .featured-credit {
+    font-size: 0.85rem;
+  }
+}
+
+.featured-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Round Action Buttons */
+.action-circle-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 21, 22, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .action-circle-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.action-circle-btn:hover {
+  transform: scale(1.1);
+}
+
+.action-circle-btn.bookmarked {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #FFD700;
+  color: #FFD700;
+}
+
+.shadow-gold:hover {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.shadow-cyan:hover {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+}
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  background: rgba(13, 21, 22, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-primary);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: slideInUp 0.3s ease-out forwards;
+}
+
+.toast-icon {
+  color: var(--color-primary);
+}
+
+/* 3. AI Explanation + NASA Description */
+.description-section {
+  padding: 3rem 0;
+}
+
+.description-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-gutter);
+}
+
+@media (min-width: 768px) {
+  .description-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.ai-explanation-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ai-explanation-col {
+    grid-column: span 7;
+  }
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 12px;
+  background-color: rgba(0, 229, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.ai-icon {
+  color: var(--color-primary);
+  font-size: 14px !important;
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.ai-badge-text {
+  color: var(--color-primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.explanation-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.explanation-text {
+  color: var(--color-on-surface-variant);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+  .explanation-text {
+    font-size: 1.1rem;
+  }
+}
+
+.tags-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.tag-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border-color: rgba(0, 229, 255, 0.15);
+  transition: border-color 0.3s ease;
+}
+
+.tag-pill:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+.tag-icon {
+  color: var(--color-primary);
+  font-size: 14px !important;
+}
+
+.tag-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-on-surface);
+}
+
+.nasa-description-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .nasa-description-col {
+    grid-column: span 5;
+  }
+}
+
+.nasa-desc-card {
+  padding: 1.5rem;
+  border-color: rgba(255, 102, 0, 0.25);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: border-color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .nasa-desc-card {
+    padding: 2rem;
+  }
+}
+
+.nasa-desc-card:hover {
+  border-color: rgba(255, 102, 0, 0.6);
+}
+
+.nasa-desc-title {
+  color: #FF6600;
+  font-weight: 700;
+}
+
+.nasa-desc-icon {
+  color: rgba(255, 102, 0, 0.6);
+}
+
+.nasa-desc-scroll {
+  flex-grow: 1;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .nasa-desc-scroll {
+    max-height: none;
+  }
+}
+
+/* Custom scrollbar hiding helper */
+.nasa-desc-scroll::-webkit-scrollbar {
+  display: none;
+}
+.nasa-desc-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.nasa-desc-text {
+  color: var(--color-on-surface-variant);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .nasa-desc-text {
+    font-size: 1rem;
+  }
+}
+
+.nasa-desc-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.disclaimer-text {
+  font-size: 0.65rem;
+  color: rgba(220, 228, 229, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* 4. Date Picker & Recent Gallery */
+.gallery-section {
+  padding: 3rem 0;
+  background-color: var(--color-surface-container-low);
+  border-y: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gallery-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.gallery-header-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .gallery-header-row {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+.gallery-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background: rgba(13, 21, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .date-controls {
+    width: auto;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.date-nav-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-on-surface-variant);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.date-nav-btn:hover {
+  background-color: rgba(0, 229, 255, 0.1);
+  color: var(--color-primary);
+}
+
+.date-nav-btn:active {
+  transform: scale(0.9);
+}
+
+.date-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.date-input:hover {
+  color: var(--color-primary);
+}
+
+/* Gallery Scroll */
+.gallery-items-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1.5rem;
+}
+
+/* Custom scrollbar hiding helper */
+.gallery-items-scroll::-webkit-scrollbar {
+  display: none;
+}
+.gallery-items-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.gallery-item-card {
+  flex-shrink: 0;
+  width: 9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .gallery-item-card {
+    width: 11rem;
+  }
+}
+
+.gallery-image-box {
+  aspect-ratio: 3/4;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+  margin-bottom: 0.75rem;
+}
+
+.gallery-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.gallery-image-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.gallery-item-card:hover .gallery-item-image {
+  transform: scale(1.08);
+}
+
+.gallery-item-card:hover .gallery-image-overlay {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.gallery-item-card:hover .gallery-image-box {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.active-gallery-card .gallery-image-box {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.active-gallery-card .gallery-image-overlay {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.gallery-item-date {
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  margin-bottom: 0.15rem;
+}
+
+.gallery-item-card:hover .gallery-item-date {
+  color: var(--color-primary);
+}
+
+.gallery-item-title {
+  color: var(--color-on-surface-variant);
+  font-size: 0.75rem;
+}
+
+/* 5. Saved Images (Your Celestial Collection) */
+.collection-section {
+  padding: 3rem 0;
+}
+
+.collection-header {
+  margin-bottom: 2rem;
+}
+
+.collection-header-icon {
+  color: #FFD700;
+  font-size: 1.75rem !important;
+}
+
+@media (min-width: 768px) {
+  .collection-header-icon {
+    font-size: 2.25rem !important;
+  }
+}
+
+.collection-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Empty Collection View */
+.collection-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border: 2px dashed rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  background-color: rgba(21, 29, 30, 0.3);
+  min-height: 200px;
+}
+
+@media (min-width: 768px) {
+  .collection-empty-card {
+    padding: 5rem var(--spacing-margin-desktop);
+    min-height: 300px;
+  }
+}
+
+.empty-icon {
+  font-size: 3.5rem !important;
+  color: rgba(220, 228, 229, 0.15);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .empty-icon {
+    font-size: 4.5rem !important;
+  }
+}
+
+.empty-title {
+  color: var(--color-on-surface-variant);
+  max-width: 24rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.start-explore-btn {
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 8px 24px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.start-explore-btn:hover {
+  background-color: rgba(0, 229, 255, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+}
+
+.start-explore-btn:active {
+  transform: scale(0.95);
+}
+
+/* Bookmarked Collection Grid */
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-gutter);
+}
+
+@media (min-width: 640px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.collection-card {
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.collection-card:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.collection-img-box {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+
+.collection-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.collection-card:hover .collection-img {
+  transform: scale(1.05);
+}
+
+.collection-delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffb4ab;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.collection-delete-btn:hover {
+  background-color: #690005;
+  color: #ffdad6;
+  border-color: rgba(255, 180, 171, 0.3);
+  transform: scale(1.1);
+}
+
+.collection-card-details {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.collection-card-date {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.collection-card-title {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* 6. Fun Stats Strip */
+.stats-strip {
+  width: 100%;
+  padding: 3rem var(--spacing-margin-mobile);
+  background-color: var(--color-surface-container-highest);
+  border-y: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .stats-strip-inner {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-gutter);
+  }
+}
+
+.stat-strip-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.stat-icon {
+  color: var(--color-primary);
+  font-size: 1.75rem !important;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.stat-strip-box:hover .stat-icon {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .stat-number {
+    font-size: 1.25rem;
+  }
+}
+
+.stat-label {
+  color: var(--color-on-surface-variant);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+/* 7. Lightbox Fullscreen Overlay */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .lightbox-close-btn {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+.lightbox-close-btn:hover {
+  color: var(--color-primary);
+  transform: rotate(90deg);
+}
+
+.lightbox-close-btn:active {
+  transform: scale(0.9) rotate(90deg);
+}
+
+.lightbox-image {
+  max-height: 70vh;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  animation: scaleUp 0.3s ease-out forwards;
+}
+
+.lightbox-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  max-width: 36rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lightbox-title {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  .lightbox-title {
+    font-size: 1.5rem;
+  }
+}
+
+.lightbox-date {
+  color: var(--color-on-surface-variant);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* General Animations */
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+
+/* Scroll reveal helpers */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: scrollRevealActive 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes scrollRevealActive {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
