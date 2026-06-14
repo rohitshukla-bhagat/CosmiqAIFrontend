@@ -25,7 +25,6 @@ const SignIn: React.FC<SignInProps> = ({ onLoginSuccess, verificationStatus, cle
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   
   // Interaction states
   const [isLoading, setIsLoading] = useState(false);
