@@ -341,22 +341,6 @@ const SignIn: React.FC<SignInProps> = ({ onLoginSuccess, verificationStatus, cle
                   </div>
                 </div>
 
-                <div className="signin-controls">
-                  <label className="signin-checkbox-label">
-                    <input
-                      type="checkbox"
-                      className="signin-checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      disabled={isLoading}
-                    />
-                    <span className="signin-checkbox-text">Remember Mission</span>
-                  </label>
-                  <a href="#" className="signin-forgot-link" onClick={(e) => e.preventDefault()}>
-                    Forgot password?
-                  </a>
-                </div>
-
                 <button
                   type="submit"
                   className="signin-submit-btn"
