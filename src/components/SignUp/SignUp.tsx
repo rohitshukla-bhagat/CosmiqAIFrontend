@@ -258,7 +258,7 @@ const SignUp: React.FC = () => {
               </div>
               <h3 className="signup-success-title">Verification Sent</h3>
               <p className="signup-success-msg">A verification email has been dispatched to {email}.</p>
-              <p className="signup-success-msg-sub">Please verify your email address to initialize your mission orbit. Redirecting to login...</p>
+              <p className="signup-success-msg-sub">Please verify your email address to initialize your mission orbit also check the spam folder. Redirecting to login...</p>
             </div>
           ) : (
             <div className={isLoading ? 'signup-form-disabled' : ''}>
