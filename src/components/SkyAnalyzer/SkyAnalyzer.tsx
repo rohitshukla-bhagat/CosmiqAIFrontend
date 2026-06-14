@@ -428,11 +428,7 @@ const SkyAnalyzer: React.FC<SkyAnalyzerProps> = ({ user }) => {
                   </div>
 
                   <div className="actions-container">
-                    <button className="btn-secondary">Share Report</button>
-                    <button className="btn-reset" onClick={resetAll}>
-                      <span className="material-symbols-outlined">refresh</span>
-                    </button>
-                    <button className="btn-action-primary">Deep Dive</button>
+                    <button className="btn-action-primary" onClick={resetAll}>Analyze Another Image</button>
                   </div>
                 </div>
               )}
